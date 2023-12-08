@@ -4,7 +4,7 @@ const fs = require("fs");
 // readFile is async and has 3 arguments:
 // 1 - the relative path to the file
 // 2 - the optional encoding method (ex. to mutate the buffer to a string)
-// 3 - a callback function that has as arguments the error and the data of the file
+// 3 - a callback function that has as arguments the error and the data (the file)
 fs.readFile("./docs/text.txt", "utf8", (err, data) => {
   if (err) {
     console.log(err);
