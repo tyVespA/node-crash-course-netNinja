@@ -1,4 +1,5 @@
 const express = require("express");
+const morgan = require("morgan");
 
 const app = express();
 
@@ -9,6 +10,20 @@ app.set("view engine", "ejs");
 app.set("views", "07_views");
 
 app.listen(3000);
+
+// custom middleware
+// .next tells the server we are done with the middleware and we can move one - otherwise it will stay stuck in the middleware
+app.use((req, res, next) => {
+  console.log("new request made:");
+  console.log("host: " + req.hostname);
+  console.log("path: " + req.path);
+  console.log("method: " + req.method);
+  next();
+});
+
+// middleware & static files (ex. css file)
+// by passing "public" now everything in the public folder will be available in the front end
+app.use(express.static("public"));
 
 const blogs = [
   { title: "Blog title 1", snippet: "Lorem ipsum snippet" },
