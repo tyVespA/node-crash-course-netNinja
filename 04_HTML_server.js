@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
       throw err;
       res.end();
     } else {
-      // res.write(data);
+      // res.write(data); we dont need this if we pass data to .end
       res.end(data);
     }
   });
