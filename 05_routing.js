@@ -1,6 +1,8 @@
 const http = require("http");
 const fs = require("fs");
 
+const _ = require("lodash");
+
 const server = http.createServer((req, res) => {
   // Set header
   res.setHeader("Content-Type", "text/html");
@@ -20,6 +22,7 @@ const server = http.createServer((req, res) => {
     // if i no longer have the page /about-me but only /about:
     case "/about-me":
       res.statusCode = 301; // 301 is the redirect code
+      // We set the header of location, and we redirect to /about
       res.setHeader("Location", "/about");
       res.end();
       break;
