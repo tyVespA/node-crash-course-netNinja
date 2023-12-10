@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <div class="details content">
+      <h2><%= blog.title %></h2>
+      <div class="content">
+        <p><%= blog.body %></p>
+      </div>
+      <!-- data-doc is a custom variable -->
+      <a class="delete" data-doc="<%= blog._id %>">delete</a>
+    </div>
+
+    <%- include("./partials/footer.ejs") %>
+
+    <script>
+      const trashcan = document.querySelector("a.delete");
+
+      trashcan.addEventListener("click", (e) => {
+        // .dataset specifies its a custom data variable, after that we pass the name of it(doc)
+        const endpoint = `/blogs/${trashcan.dataset.doc}`;
+
+        // we use the fetch API
+        fetch(endpoint, {
+          method: "DELETE",
+        })
+          // .json parses the json into a js object that we can use
+          .then((response) => response.json())
+          // data is the parsed json
+          .then((data) => (window.location.href = data.redirect))
+          .catch((err) => console.log(err));
+      });
+    </script>
+  </body>
+</html>
