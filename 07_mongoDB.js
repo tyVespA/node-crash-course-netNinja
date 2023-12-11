@@ -11,7 +11,7 @@ mongoose
   .connect(DB)
   .then((result) => app.listen(3000))
   .catch((err) => {
-    throw err;
+    console.log(err);
   });
 
 app.set("view engine", "ejs");
@@ -46,7 +46,7 @@ app.get("/blogs", (req, res) => {
       res.render("index", { title: "All blogs", blogs: result });
     })
     .catch((err) => {
-      throw err;
+      console.log(err);
     });
 });
 
@@ -62,7 +62,7 @@ app.post("/blogs", (req, res) => {
       res.redirect("/blogs");
     })
     .catch((err) => {
-      throw err;
+      console.log(err);
     });
 });
 
@@ -74,7 +74,7 @@ app.get("/blogs/:id", (req, res) => {
       res.render("details", { blog: result, title: "Blog details" });
     })
     .catch((err) => {
-      throw err;
+      console.log(err);
     });
 });
 
@@ -90,7 +90,7 @@ app.delete("/blogs/:id", (req, res) => {
       res.json({ redirect: "/blogs" });
     })
     .catch((err) => {
-      throw err;
+      console.log(err);
     });
 });
 

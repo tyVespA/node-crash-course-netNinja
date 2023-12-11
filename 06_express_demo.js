@@ -28,5 +28,6 @@ app.get("/about-us", (req, res) => {
 // .use is used for middleware fs - in this case it will fire for any request
 // express works from top to bottom, if there was no match in the previous functions then this one will fire - so this f must be placed after the other .get()s
 app.use((req, res) => {
+  // in this case we need to specify the status
   res.status(404).sendFile("./05_views/404.html", { root: __dirname });
 });
